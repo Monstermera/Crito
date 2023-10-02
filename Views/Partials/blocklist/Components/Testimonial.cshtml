@@ -1,0 +1,37 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models;
+
+@{
+    var content = (ContentModels.Testimonial)Model.Content;
+}
+
+
+<div class="card">
+    <span class="rating">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+    </span>
+    <p class="review">@content.Value("reviewDescription")</p>
+    
+    <div class="review-details">
+        @{
+            var typedMediaPickerSingle = content.ReviewImage;
+            if (typedMediaPickerSingle is MediaWithCrops mediaEntry)
+            {
+                <img src="@mediaEntry.MediaUrl()" alt="@content.Value("reviewTitle")" />
+            }
+        }   
+        
+        <div class="review-titles">
+            <h5>@content.Value("reviewTitle")</h5>
+            <p>@content.Value("reviewCompany")</p>
+        </div>
+    </div>
+</div>
+
+
+

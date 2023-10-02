@@ -1,0 +1,21 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+
+<section class="testimonial" style="margin-bottom: 50px;">
+    <div class="container">
+        <div class="section-details">
+            <p class="heading">@Model.Value("testimonialSectionTitle")</p>
+            <h5>@Model.Value("testimonialSectionHeading")</h5>
+        </div>
+
+        <div class="card-group">
+            @Html.GetBlockListHtml(Model.Testimonial)
+        </div>
+        
+        <div class="more">
+            <a href="@Model.Value("testimonialSectionButtonUrl")" class="btn-dark">@Model.Value("testimonialSectionButtonText")<i class="fa-sharp fa-regular fa-arrow-up-right"></i></a>
+        </div>
+    </div>
+</section>

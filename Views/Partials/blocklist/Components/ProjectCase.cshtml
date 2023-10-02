@@ -1,0 +1,25 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models;
+
+@{
+    var content = (ContentModels.ProjectCase)Model.Content;
+    
+}
+
+
+<div class="case">
+    <div class="body">
+    @{
+        var typedMediaPickerSingle = content.ProjectImage;
+        if (typedMediaPickerSingle is MediaWithCrops mediaEntry)
+        {
+            <img src="@mediaEntry.MediaUrl()" alt="@content.Value("projectName")">
+        }
+    }        
+    <h5>@content.Value("projectName")</h5>
+    </div>
+        <a href="@content.Value("projectButtonUrl")">@content.Value("projectButtonText")<i class="fa-light fa-arrow-up-right"></i></a>
+
+    
+    </div>

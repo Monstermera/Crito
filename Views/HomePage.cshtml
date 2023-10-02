@@ -1,0 +1,31 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+	Layout = "LayoutWithShowcase.cshtml";
+	
+    var selection = Umbraco?.Content(Guid.Parse("dc18a4f6-3b97-42c4-a7a3-da24a009de33"))?
+        .ChildrenOfType("newsItemPage")?
+        .Where(x => x.IsVisible())
+        .OrderByDescending(x => x.CreateDate).ToList();
+
+    var totalItems = selection?.Count() ?? 0;
+    var pagedItems = selection?.OrderBy(x => x.CreateDate).Take(3);
+}
+
+
+
+@await Html.PartialAsync("_BrandSection")
+@await Html.PartialAsync("_ServiceFeaturesSection", Model)
+@await Html.PartialAsync("_AboutCompanySection")
+@await Html.PartialAsync("_OurServicesSection", Model)
+@await Html.PartialAsync("_ProjectCaseSection", Model)
+
+@await Html.PartialAsync("_ChooseUsSection", Model)
+@await Html.PartialAsync("_OurTeamSection", Model)
+@await Html.PartialAsync("_TestimonialSection", Model)
+
+@await Html.PartialAsync("_NewsArticlesSection", pagedItems)
+
+

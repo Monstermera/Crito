@@ -1,0 +1,100 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.NewsItemPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Services;
+@using Umbraco.Cms.Core.Models.PublishedContent;
+@inject IUserService UserService;
+
+
+@{
+	Layout = "LayoutWithBreadcrumb.cshtml";
+	var userService = UserService;
+	var image = Model.Value<IPublishedContent>("newsImage");
+	
+	
+    var selection = Umbraco?.Content(Guid.Parse("dc18a4f6-3b97-42c4-a7a3-da24a009de33"))?
+        .ChildrenOfType("newsItemPage")?
+        .Where(x => x.IsVisible())
+        .OrderByDescending(x => x.CreateDate).ToList();
+
+    var totalItems = selection?.Count() ?? 0;
+    var pagedItems = selection?.OrderBy(x => x.CreateDate).Take(3);
+	
+}
+
+<section class="article-item">
+    <div class="container">
+        <div class="article-body">
+            <div class="section-details">
+                <h5>@Model.Name("pageName")</h5>
+                <div class="article-details">
+                    <span>@Model.CreateDate.ToString("MMM dd, yyyy")</span>
+                    <i class="fa-solid fa-circle"></i>
+                    <span>@Model.Value("newsCategory")</span>
+                    <i class="fa-solid fa-circle"></i>
+                    <span>@Model.CreatorName(UserService)</span>
+                </div>
+            </div>
+            
+            <div class="article-content">
+                <img class="article-image" src="@image.Url()" alt="" />
+  
+                @Model.Value("newsContent")
+                
+                <div class="tags">
+                   @foreach (var tag in Model.Value<IEnumerable<string>>("newsTags"))
+                   {
+                    <span>@tag</span>
+                   }
+                </div>
+                  
+            </div>
+        </div>
+        
+        <div class="column-2">
+            <div class="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Type to search...">
+            </div>
+
+            <div class="recents">
+                <div class="section-details">
+                    <h5>Recent Posts</h5> 
+                    <div class="line"></div>
+                </div>
+                <div class="posts">
+                    <h5>How To Blow Through Capital At An Incredible Rate</h5>
+                    <p class="recent-date">Jan 14, 2020</p>
+                    
+                    <h5>Design Studios That Everyone Should Know About?</h5>
+                    <p class="recent-date">Jan 14, 2020</p>
+                    
+                    <h5>How did we get 1M+ visitors in 30 days without anything!</h5>
+                    <p class="recent-date">Jan 14, 2020</p>
+                    
+                    <h5>Figma On Figma: How We Built Our Website Design System</h5>
+                    <p class="recent-date last">Jan 14, 2020</p>
+                </div>
+            </div>
+                
+            <div class="categories">
+                <div class="section-details">
+                    <h5>Categories</h5>
+                    <div class="line"></div>
+                </div>
+                
+                <h5>Technology - <span>20 Posts</span></h5>
+                <h5>Freelancing - <span>07 Posts</span></h5>
+                <h5>Writing - <span>16 Posts</span></h5>
+                <h5>Marketing - <span>11 Posts</span></h5>
+                <h5>Business - <span>35 Posts</span></h5>
+                <h5>Education - <span>14 Posts</span></h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div style="background-color:#F0EFE9;">
+        @await Html.PartialAsync("_NewsArticlesSection", pagedItems)
+
+</div>

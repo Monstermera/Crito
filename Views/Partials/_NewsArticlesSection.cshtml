@@ -1,0 +1,46 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IEnumerable<IPublishedContent>>
+
+<section class="articles">    
+    <div class="container">
+            <div class="section-details">
+                <div class="title">
+                    <p class="heading">Article & News</p>
+                    <h5>Get Every Single Articles & News</h5>
+                </div>
+                <div class="more">
+                    <a href="/news/articles" class="clear-btn">Browse Articles<i class="fa-sharp fa-regular fa-arrow-up-right"></i></a>
+                </div>
+            </div>
+        
+        
+        <div class="articles-group">
+            @if(Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    var url = item.Url();
+                    var date = item.CreateDate;
+                    var image = item.Value<IPublishedContent>("newsImage");
+                    var category = item.Value("newsCategory");
+                    var title = item.Name();
+                    var preamble = item.Value("newsPreamble");
+                
+                    <a href="@url" class="article">
+                        <div class="date"><strong>@date.ToString("dd")</strong> <br>@date.ToString("MMM")</div>
+                        <img src="@image?.Url()" alt="placeholder image" />
+                        <p class="category">@category</p>
+                        <h5>@title</h5>
+                        <p class="description">@preamble</p>
+                    </a>
+                }
+            }
+        </div>
+            <div class="dots">
+            <i class="fa-solid fa-circle"></i>
+            <i class="fa-duotone fa-circle"></i>
+            <i class="fa-duotone fa-circle"></i>
+            <i class="fa-duotone fa-circle"></i>
+            <i class="fa-duotone fa-circle"></i>
+        </div>
+    </div>
+</section>

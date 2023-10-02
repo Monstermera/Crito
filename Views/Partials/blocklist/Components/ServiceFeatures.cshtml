@@ -1,0 +1,11 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var content = (ContentModels.ServiceFeatures)Model.Content;
+}
+
+<div class="features-box">
+    <i class="@content.Value("serviceFeatureIcon")"></i>
+    <h5 class="card-title">@content.Value("serviceFeatureTitle")</h5>
+    <p>@content.Value("serviceFeatureDescription")</p>
+</div>
