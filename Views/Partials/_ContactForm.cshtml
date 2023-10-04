@@ -1,0 +1,34 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Crito.Models;
+
+@{
+    var contactForm = new ContactForm();
+}
+
+<section class="contact-form">
+    <div class="container">
+    <h2>Leave us a message <br> for any information</h2>
+    
+        @using (Html.BeginUmbracoForm("Index", "Contacts", FormMethod.Post, new { @novalidate = "novalidate", onsubmit = "validateContactForm(event);" }))
+        {
+            <div asp-validation-summary="ModelOnly" class="form-group message"></div>
+
+            <div class="name form-group">
+                <input asp-for="@contactForm.Name" type="text" id="name" class="invalid" placeholder="Name*" onkeyup="validateName(event)" required>
+                <span asp-validation-for="@contactForm.Name" class="text-danger" id="nameError"></span>
+            </div>
+
+            <div class="email form-group">
+                <input asp-for="@contactForm.Email" type="text"id="email" class="invalid" placeholder="Email*" onkeyup="validateEmail(event)" required>
+                <span asp-validation-for="@contactForm.Email" class="text-danger" id="emailError"></span>
+            </div>
+
+            <div class="message form-group">
+                <textarea asp-for="@contactForm.Message" id="message" class="invalid" placeholder="Your Message*" onkeyup="validateMessage(event)" required></textarea>
+                <span asp-validation-for="@contactForm.Message" class="text-danger" id="messageError"></span>
+            </div>
+            <button class="btn-theme" type="submit">Send Message<i class="fa-sharp fa-regular fa-arrow-up-right"></i></button>
+        }
+
+    </div>
+</section>

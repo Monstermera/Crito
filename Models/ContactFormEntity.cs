@@ -19,5 +19,6 @@ namespace Crito.Models
 
         [Required(ErrorMessage = "Message is required")]
         public string Message { get; set; } = null!;
+
     }
 }

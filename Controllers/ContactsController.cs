@@ -41,5 +41,37 @@ namespace Crito.Controllers
             return LocalRedirect(contactForm.RedirectUrl ?? "/");
 
         }
+
+        //[HttpPost]
+        //public async Task<IActionResult> Index(ContactForm contactForm)
+        //{
+        //    // Anpassade valideringsregler
+        //    if (string.IsNullOrEmpty(contactForm.Name) || contactForm.Name.Length < 2)
+        //    {
+        //        ModelState.AddModelError("Name", "Name must be at least 2 characters long.");
+        //    }
+
+        //    if (string.IsNullOrEmpty(contactForm.Message) || contactForm.Message.Length < 5)
+        //    {
+        //        ModelState.AddModelError("Message", "Message must be at least 5 characters long.");
+        //    }
+
+        //    if (!ModelState.IsValid)
+        //    {
+        //        // Om modellen inte är giltig, återvänd till vyn med de anpassade felmeddelandena
+        //        return View(contactForm);
+        //    }
+
+        //    using var mail = new MailService("no-reply@crito.com", "smtp.crito.com", 587, "contact-form@crito.com", "Bytmig123!");
+
+        //    await mail.SendAsync(contactForm.Email, "Your contact request was received.", "Hi! Your request was received and we will be in contact with you as soon as possible.");
+
+        //    await mail.SendAsync("umbraco@crito.com", $"{contactForm.Name} sent a contact request.", contactForm.Message);
+
+        //    await _contactFormService.AddContactFormAsync(contactForm);
+
+        //    return LocalRedirect(contactForm.RedirectUrl ?? "/");
+        //}
+
     }
 }

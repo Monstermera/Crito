@@ -1,10 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,700;9..40,800&family=Inter:wght@300&display=swap");
-
-.text-danger {
-    font-size: 14px;
-}
-
 html,
 body {
   font-size: 16px;
@@ -857,7 +852,8 @@ footer .copyright .container .social-media a {
 .news .container .articles-group .article img {
   height: 230px;
   width: 420px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .news .container .articles-group .article .category {
   margin-top: 20px;
@@ -904,7 +900,6 @@ footer .copyright .container .social-media a {
   margin-bottom: 30px;
   width: 75%;
 }
-
 .article-item .container .article-body .section-details .article-details span {
   color: #5E5E5E;
 }
@@ -920,7 +915,8 @@ footer .copyright .container .social-media a {
 .article-item .container .article-body .article-content .article-image {
   width: 760px;
   height: 500px;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .article-item .container .article-body .article-content p {
   padding-left: 5px;
@@ -1084,8 +1080,7 @@ footer .copyright .container .social-media a {
   padding-bottom: 100px;
 }
 .contact-form .container {
-  padding: 140px 155px 100px 155px;
-  height: 766px;
+  padding: 140px 155px 60px 155px;
   background-color: #F0EFE9;
 }
 .contact-form .container h2 {
@@ -1100,11 +1095,16 @@ footer .copyright .container .social-media a {
 .contact-form .container .form-group {
   text-align: center;
 }
+.contact-form .container .text-danger {
+  text-align: start;
+  display: flex;
+  padding: 0 0 10px 30px;
+}
 .contact-form .container input, .contact-form .container textarea {
   border: none;
   width: 100%;
-  margin-bottom: 20px;
   border-radius: 40px;
+  margin-bottom: 20px;
   padding: 15px 0 15px 40px;
 }
 .contact-form .container textarea {
@@ -1113,5 +1113,4 @@ footer .copyright .container .social-media a {
 }
 .contact-form .container button {
   width: 100%;
-  margin-top: 30px;
 }

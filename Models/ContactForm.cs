@@ -4,17 +4,19 @@ namespace Crito.Models
 {
     public class ContactForm
     {
-        [Required]
-        [MinLength(2, ErrorMessage = "Name must be at least 2 characters long.")]
+        [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; } = null!;
 
-        [Required]
+
         [EmailAddress]
+        [Required(ErrorMessage = "Email address is required")]
         public string Email { get; set; } = null!;
 
-        [Required]
-        [MinLength(5, ErrorMessage = "Message must be at least 5 characters long.")]
+
+        [Required(ErrorMessage = "Message is required")]
         public string Message { get; set; } = null!;
+
         public string? RedirectUrl { get; set; } = "/";
+
     }
 }
